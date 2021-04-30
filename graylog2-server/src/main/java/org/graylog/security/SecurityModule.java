@@ -29,6 +29,8 @@ import org.graylog.security.authservice.backend.ADAuthServiceBackendConfig;
 import org.graylog.security.authservice.backend.LDAPAuthServiceBackend;
 import org.graylog.security.authservice.backend.LDAPAuthServiceBackendConfig;
 import org.graylog.security.authservice.backend.MongoDBAuthServiceBackend;
+import org.graylog.security.authservice.backend.OktaAuthServiceBackend;
+import org.graylog.security.authservice.backend.OktaAuthServiceBackendConfig;
 import org.graylog.security.authservice.ldap.UnboundLDAPConnector;
 import org.graylog.security.authservice.rest.AuthServiceBackendsResource;
 import org.graylog.security.authservice.rest.AuthServiceTestResource;
@@ -77,6 +79,10 @@ public class SecurityModule extends PluginModule {
 
         addAuditEventTypes(SecurityAuditEventTypes.class);
 
+        addAuthServiceBackend(OktaAuthServiceBackend.TYPE_NAME,
+                OktaAuthServiceBackend.class,
+                OktaAuthServiceBackend.Factory.class,
+                OktaAuthServiceBackendConfig.class);
         addAuthServiceBackend(LDAPAuthServiceBackend.TYPE_NAME,
                 LDAPAuthServiceBackend.class,
                 LDAPAuthServiceBackend.Factory.class,
